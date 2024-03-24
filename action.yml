@@ -1,0 +1,30 @@
+name: 'Server Mom Deploy'
+description: 'Deploy to Server Mom via API'
+inputs:
+  account:
+    description: 'Account name (subdomain)'
+    required: true
+  project:
+    description: 'Slug of the project'
+    required: true
+  email:
+    description: 'Email of an existing user'
+    required: true
+  api_key:
+    description: 'API Key of an existing user'
+    required: true
+  server_id:
+    description: 'ID of the server on which the deployment must be run'
+    required: true
+  branch:
+    description: 'Branch name of the deployment'
+    required: true
+  revision:
+    description: 'Revision of the deployment (Both short and full SHA is allowed)'
+    required: true
+outputs:
+  output:
+    description: 'Output of the API call'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
