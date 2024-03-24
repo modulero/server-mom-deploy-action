@@ -8,12 +8,12 @@ try {
     const project = core.getInput('project');
     const email = core.getInput('email');
     const apiKey = core.getInput('api_key');
+    const encodedEmailAndApiKey = btoa(email + ':' + apiKey);
     const serverId = core.getInput('server_id');
     const branch = core.getInput('branch');
     const revision = core.getInput('revision');
-    const encodedEmailAndApiKey = btoa(email + ':' + apiKey);
 
-    core.setOutput('debug', domain);
+    core.setOutput('debug', {domain: domain});
 
     fetch(`https://${account}.${domain}/api/projects/${project}/deployments`, {
         method: 'POST',
