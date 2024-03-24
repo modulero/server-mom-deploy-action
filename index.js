@@ -11,15 +11,16 @@ try {
     const serverId = core.getInput('server_id');
     const branch = core.getInput('branch');
     const revision = core.getInput('revision');
+    const encodedEmailAndApiKey = btoa(email + ':' + apiKey);
 
-    core.info(JSON.stringify({domain, account, project, email, apiKey, serverId, branch, revision}));
+    core.setOutput('debug', JSON.stringify({domain, account, project, email, apiKey, encodedEmailAndApiKey, serverId, branch, revision}));
 
     fetch(`https://${account}.${domain}/api/projects/${project}/deployments`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Basic ' + btoa(email + ':' + apiKey),
+            'Authorization': 'Basic ' + encodedEmailAndApiKey,
         },
         body: JSON.stringify({
             server_id: serverId,

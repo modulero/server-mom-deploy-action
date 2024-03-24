@@ -23,6 +23,8 @@ inputs:
     description: 'Revision of the deployment (Both short and full SHA is allowed)'
     required: true
 outputs:
+  debug:
+    description: 'Debugging of the API call'
   output:
     description: 'Output of the API call'
 runs:
