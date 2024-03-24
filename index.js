@@ -12,7 +12,7 @@ try {
     const branch = core.getInput('branch');
     const revision = core.getInput('revision');
 
-    fetch(`https://${account}.${domain}/projects/${project}/deployments`, {
+    fetch(`https://${account}.${domain}/api/projects/${project}/deployments`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
