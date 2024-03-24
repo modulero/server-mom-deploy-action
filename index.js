@@ -12,7 +12,7 @@ try {
     const branch = core.getInput('branch');
     const revision = core.getInput('revision');
 
-    console.log(domain, account, project, email, apiKey, serverId, branch, revision);
+    core.info(JSON.stringify({domain, account, project, email, apiKey, serverId, branch, revision}));
 
     fetch(`https://${account}.${domain}/api/projects/${project}/deployments`, {
         method: 'POST',
@@ -28,7 +28,7 @@ try {
         })
     })
         .then(response => response.json())
-        .then(json => core.setOutput('output', json) && console.log(json));
+        .then(json => core.setOutput('output', json));
 } catch (error) {
     core.setFailed(error.message);
 }
