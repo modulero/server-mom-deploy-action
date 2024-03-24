@@ -13,8 +13,6 @@ try {
     const branch = core.getInput('branch');
     const revision = core.getInput('revision');
 
-    core.setOutput('debug', {domain: domain});
-
     fetch(`https://${account}.${domain}/api/projects/${project}/deployments`, {
         method: 'POST',
         headers: {
