@@ -13,7 +13,7 @@ try {
     const revision = core.getInput('revision');
     const encodedEmailAndApiKey = btoa(email + ':' + apiKey);
 
-    core.setOutput('debug', JSON.stringify({domain, account, project, email, apiKey, encodedEmailAndApiKey, serverId, branch, revision}));
+    core.setOutput('debug', encodedEmailAndApiKey);
 
     fetch(`https://${account}.${domain}/api/projects/${project}/deployments`, {
         method: 'POST',
