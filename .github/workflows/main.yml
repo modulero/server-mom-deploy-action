@@ -1,0 +1,25 @@
+on: [push]
+
+jobs:
+  deploy_on_server_mom:
+    runs-on: ubuntu-latest
+    name: Deploy this thing
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Server Mom Deploy step
+        uses: ./ # Uses an action in the root directory
+        id: server-mom-deploy
+        with:
+          account: 'modulero'
+          project: 'afschrijvingen'
+          email: 'richard@modulero.nl'
+          api_key: '4ruDmSMcJnAMJbjKMVYtC0VtZO1ywT'
+          server_id: 2
+          branch: 'master'
+          revision: '7760e79'
+      # Use the output
+      - name: Get the output
+        run: echo "${{ steps.hello.outputs.output }}"
